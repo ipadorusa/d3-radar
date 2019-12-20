@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="https://www.saramin.co.kr/sri_css/company/pattern.css">
+    <link rel="stylesheet" href="sample.css">
+    <style>
+        .radar_chart .line {stroke:#ddd;stroke-width:1px}
+        .radar_chart .line_axis {stroke:#ddd;stroke-width:1px}
+        .radar_chart .label {font-size:14px;fill:#666;}
+        .radar_chart .label_score {font-size:14px;fill:#666}
+        .radar_chart .radar_pointer  {fill:#fff;stroke:#2365f2}
+        .radar_chart .radar_pointer.radar_pointer00 {stroke-width:2px}
+        .radar_chart .radar_pointer.radar_pointer01  {display:none}
+        .radar_chart .radar_polygon00 {stroke-width:1px;stroke:#2365f2;fill:rgba(8,87,255,0.6)}
+        .radar_chart .radar_polygon01 {stroke:#283248;fill:transparent;stroke-dasharray:3}
+        .radar_chart .axis.max .label {font-weight:bold;color:#222}
+        .radar_chart .axis.max .label_score {font-weight:bold;color:#222}
+
+        .columns {display:flex;flex-direction:row;flex-wrap:nowrap;justify-content:space-around}
+        .columns .column {margin-top:20px}
+    </style>
+</head>
+<body>
+<div id="wrap" class="wrap">
+    <div class="box">
+        <h1>RadarChart</h1>
+        <div class="tblType">
+            <table>
+                <colgroup>
+                    <col style="width:15%">
+                    <col style="width:13%">
+                    <col style="width:12%">
+                    <col style="width:30%">
+                    <col style="width:30%">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th scope="col">Parameter</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Default</th>
+                    <th scope="col">설명</th>
+                    <th scope="col">비고</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>w</td>
+                    <td>number</td>
+                    <td>134</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>h</td>
+                    <td>number</td>
+                    <td>134</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>factor</td>
+                    <td>number</td>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>maxValue</td>
+                    <td>number</td>
+                    <td>100</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>levels</td>
+                    <td>number</td>
+                    <td>5</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>factorLegend</td>
+                    <td>number</td>
+                    <td>0.85</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>radians</td>
+                    <td>Mathematical expression or string</td>
+                    <td>2 * Math.PI</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>translateX</td>
+                    <td>number</td>
+                    <td>55</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>translateY</td>
+                    <td>number</td>
+                    <td>45</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>extraWidthX</td>
+                    <td>number</td>
+                    <td>100</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>extraWidthY</td>
+                    <td>number</td>
+                    <td>100</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>labels</td>
+                    <td>boolean</td>
+                    <td>false</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>labelCurreny</td>
+                    <td>string</td>
+                    <td>%</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>lablesPosition1</td>
+                    <td>Array string</td>
+                    <td>['middle', '0px', '2px']</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>lablesPosition2</td>
+                    <td>Array string</td>
+                    <td>['middle', '0px', '17px']</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>dotRadius</td>
+                    <td>number</td>
+                    <td>3</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>dotType</td>
+                    <td>Array string</td>
+                    <td>['100 94, 104 104, 94 104']</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>checkMaxValue</td>
+                    <td>null</td>
+                    <td>null</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>wrapClass</td>
+                    <td>string or template</td>
+                    <td>${CLASS.radarChartClass}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <div class="wrap_chart chart08"></div>
+            </div>
+            <div class="column">
+                <div class="wrap_chart chart09"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="test/build.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var data1 = [
+            [
+                [
+                    {item: "학점", value:30},
+                    {item: "대외활동", value:30},
+                    {item: "수상내역", value:40},
+                    {item: "자격증", value:45},
+                    {item: "보유기술", value:30},
+                    {item: "어학시험", value:30},
+                    {item: "경력", value:30}
+                ],
+                [
+                    {item: "학점", value:30},
+                    {item: "대외활동", value:55},
+                    {item: "수상내역", value:45},
+                    {item: "자격증", value:65},
+                    {item: "보유기술", value:31},
+                    {item: "어학시험", value:34},
+                    {item: "경력", value:60}
+                ]
+            ]
+        ];
+        var data2 = [
+            [
+                [
+                    {item: "정직겸손성", value:10, top:''},
+                    {item: "정서안정성", value:30, top:''},
+                    {item: "외향성", value:45, top:""},
+                    {item: "원만성", value:45, top:'y'},
+                    {item: "성실성", value:30, top:''},
+                    {item: "개방성", value:30, top:''}
+                ],
+                [
+                    {item: "정직겸손성", value:0, top:''},
+                    {item: "정서안정성", value:30, top:''},
+                    {item: "외향성", value:40, top:""},
+                    {item: "원만성", value:45, top:''},
+                    {item: "성실성", value:100, top:''},
+                    {item: "개방성", value:100, top:'y'}
+                ]
+            ]
+        ];
+        new UI.RadarChart('.chart08',{
+            w: 180,
+            h: 180,
+            extraWidthX: 220,
+            extraWidthY: 220,
+            dotRadius: 3,
+            translateX: 65
+        },data1);
+
+        new UI.RadarChart('.chart09',{
+            w: 180,
+            h: 180,
+            extraWidthX: 220,
+            extraWidthY: 220,
+            dotRadius: 3,
+            translateX: 65,
+            labels: true,
+            labelCurreny: '점',
+            checkMaxValue: 'valueIntpolation'
+        },data2);
+    });
+</script>
+</body>
+</html>
